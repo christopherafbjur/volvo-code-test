@@ -14,3 +14,7 @@ export function getAllCarIds() {
 export function getCarData(id: any){
     return (cars as Car[]).find(car => car.id === id)
 }
+
+export function getAllCars(){
+  return cars
+}
