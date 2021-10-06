@@ -12,7 +12,8 @@
     "keen-slider": "^5.5.1",
     "next": "11.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "vcc-ui": "^2.10.2"
   },
   "devDependencies": {
     "@types/react": "17.0.27",
