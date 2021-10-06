@@ -1,12 +1,13 @@
 
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getAllCarIds, getCarData } from "../../lib/cars";
+import { Car } from "../../types";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const postData = await getCarData(params?.id);
+    const carData = await getCarData(params?.id);
     return {
       props: {
-        postData,
+        carData,
       },
     };
   }
@@ -19,6 +20,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   }
 
-export default function LearnPage(){
-    return <div>Learn Page</div>
-}
+  export default function LearnPage({ carData }: { carData: Car }) {
+    return (
+      <div>
+        <h1>Learn Page</h1>
+        <pre>{JSON.stringify(carData)}</pre>
+      </div>
+    );
+  }
