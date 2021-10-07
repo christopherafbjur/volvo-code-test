@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Block, Card, Flex, Spacer, Text } from "vcc-ui";
-import { uppercase } from "../lib/helpers";
+import { toUppercase } from "../lib/helpers";
 import { ProductProps } from "../types";
 import ProductLink from "./productLink";
 
@@ -11,7 +11,7 @@ export default function Product(props: ProductProps) {
     <Card>
       <Block extend={{ padding: "10px" }}>
         <Text subStyle="emphasis" variant="bates" extend={{ color: "gray" }}>
-          {uppercase(type)}
+          {toUppercase(type)}
         </Text>
         <Flex
           extend={{
