@@ -1,6 +1,8 @@
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import React from "react";
+import { Flex } from "vcc-ui";
+import Chevron from "./arrow";
 import Product from "./product";
 
 export default function Carousel({ data }) {
@@ -8,7 +10,18 @@ export default function Carousel({ data }) {
   const [sliderRef, slider] = useKeenSlider({
     loop: true,
     initial: 0,
-    slidesPerView: 3,
+    slidesPerView: 4,
+    breakpoints: {
+      '(max-width: 719px)': {
+        slidesPerView: 1,
+      },
+      '(min-width: 720px) and (max-width: 1000px)': {
+        slidesPerView: 2,
+      },
+      '(min-width: 1001px) and (max-width: 1170px)': {
+        slidesPerView: 3,
+      },
+    },
     slideChanged(s) {
       setCurrentSlide(s.details().relativeSlide);
     },
@@ -47,52 +60,17 @@ export default function Carousel({ data }) {
         </div>
       )}
       {slider && (
-        <div
-          style={{
-            position: "relative",
-            width: "100px",
-            height: "100px",
-            backgroundColor: "red",
-          }}
-        >
-          <ArrowPrev
+        <Flex extend={{float: 'right', width: '60px', flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Chevron
+            direction="left"
             onClick={(e) => e.stopPropagation() || slider.prev()}
-            disabled={currentSlide === 0}
           />
-          <ArrowNext
+          <Chevron
+            direction="right"
             onClick={(e) => e.stopPropagation() || slider.next()}
-            disabled={currentSlide === slider.details().size - 1}
           />
-        </div>
+        </Flex>
       )}
     </>
-  );
-}
-
-function ArrowPrev(props) {
-  const disabeld = props.disabled ? " arrow--disabled" : "";
-  return (
-    <svg
-      onClick={props.onClick}
-      className={"arrow arrow--left" + disabeld}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
-      <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-    </svg>
-  );
-}
-
-function ArrowNext(props) {
-  const disabeld = props.disabled ? " arrow--disabled" : "";
-  return (
-    <svg
-      onClick={props.onClick}
-      className={"arrow arrow--right" + disabeld}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
-      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-    </svg>
   );
 }
