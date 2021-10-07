@@ -1,18 +1,17 @@
 
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { getAllCarIds, getCarData } from "../../lib/cars";
-import { Car } from "../../types";
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const carData = await getCarData(params?.id);
+export const getStaticProps: GetStaticProps = ({ params }) => {
+    const product =  getCarData(params?.id);
     return {
       props: {
-        carData,
+        product,
       },
     };
   }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = () => {
     const paths = getAllCarIds();
     return {
       paths,
@@ -20,11 +19,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   }
 
-  export default function LearnPage({ carData }: { carData: Car }) {
+  export default function LearnPage({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
       <div>
         <h1>Learn Page</h1>
-        <pre>{JSON.stringify(carData)}</pre>
+        <pre>{JSON.stringify(product)}</pre>
       </div>
     );
   }
