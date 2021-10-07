@@ -20,7 +20,7 @@ export default function Carousel({ data }) {
       <div className="navigation-wrapper">
         <div ref={sliderRef} className="keen-slider">
           {data.map((obj) => (
-            <div key={obj["id"]} className="keen-slider__slide number-slide1">
+            <div key={obj["id"]} className="keen-slider__slide">
               <Product
                 type={obj.bodyType}
                 title={obj.modelName}
