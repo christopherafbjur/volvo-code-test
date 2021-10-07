@@ -1,7 +1,14 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from "next/app";
+import { StyleProvider, ThemePicker } from "vcc-ui";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <StyleProvider>
+      <ThemePicker variant="light">
+        <Component {...pageProps} />
+      </ThemePicker>
+    </StyleProvider>
+  );
 }
-export default MyApp
+export default MyApp;
