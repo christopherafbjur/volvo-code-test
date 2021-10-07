@@ -23,7 +23,7 @@ const Home = ({ allCarsData }) => {
       </Head>
 
       <main>
-        <Carousel data={allCarsData}/>
+        <Carousel products={allCarsData}/>
       </main>
 
       <footer className={styles.footer}>
