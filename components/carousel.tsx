@@ -2,7 +2,7 @@ import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import React from "react";
 import { Flex } from "vcc-ui";
-import Chevron from "./arrow";
+import Chevron from "./chevron";
 import Product from "./product";
 
 export default function Carousel({ data }) {
