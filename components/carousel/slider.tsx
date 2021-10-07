@@ -1,11 +1,11 @@
 import { forwardRef } from "react";
 import Slide from './slide';
 
-function Slider({ items, renderItem, keyExtractor = "id" }, ref) {
+function Slider({ items, renderItem }, ref) {
   return (
     <div ref={ref} className="keen-slider">
-      {items.map((item) => (
-        <Slide key={item[keyExtractor]}>{renderItem(item)}</Slide>
+      {items.map((item, i) => (
+        <Slide key={i.toString()}>{renderItem(item)}</Slide>
       ))}
     </div>
   );
