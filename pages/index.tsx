@@ -38,7 +38,6 @@ const Home = ({ allCarsData }: { allCarsData: Car[] }) => {
           name="description"
           content="Volvo code assignment by Christopher Af Bjur"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
