@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { SelectInput } from "vcc-ui";
+import { DropDownProps } from "../types";
 
-export default function DropDown(props) {
+export default function DropDown(props: DropDownProps) {
   const [value, setValue] = useState("all");
 
   return (
-    <SelectInput label='Modell' value={value} onChange={e => {
+    <SelectInput label='Modell' value={value} onChange={(e: any) => {
         setValue(e.target.value);
         props.onChange(e.target.value)
     }}>

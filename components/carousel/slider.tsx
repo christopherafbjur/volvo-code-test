@@ -1,7 +1,9 @@
-import { forwardRef } from "react";
+import React from "react";
+import { CarouselSliderProps } from '../../types/carousel';
 import Slide from './slide';
 
-function Slider({ items, renderItem }, ref) {
+
+function Slider({ items, renderItem }: CarouselSliderProps, ref: any) {
   return (
     <div ref={ref} className="keen-slider">
       {items.map((item, i) => (
@@ -11,4 +13,4 @@ function Slider({ items, renderItem }, ref) {
   );
 }
 
-export default forwardRef(Slider);
+export default React.forwardRef(Slider);

@@ -27,7 +27,6 @@ export default function Product(props: ProductProps) {
         </Flex>
       </Block>
       <Spacer />
-      {/* <img src={imageUrl}></img> */}
       <Block extend={{ position: "relative", height: "200px" }}>
         <Image layout="fill" src={imageUrl} alt={title} objectFit="cover" loading="lazy" />
       </Block>

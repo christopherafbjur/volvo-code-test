@@ -1,8 +1,10 @@
 import { Flex } from "vcc-ui";
-import Chevron from "../chevron";
-export default function NavigationArrows({slider}) {
-  if(!slider) return null;
-  
+import { CarouselNavigationArrowProps } from "../../types";
+import ArrowButton from "../arrowButton";
+
+export default function NavigationArrows({ slider }: CarouselNavigationArrowProps) {
+  if (!slider) return null;
+
   return (
     <Flex
       extend={{
@@ -12,11 +14,11 @@ export default function NavigationArrows({slider}) {
         justifyContent: "space-between",
       }}
     >
-      <Chevron
+      <ArrowButton
         direction="left"
         onClick={(e) => e.stopPropagation() || slider.prev()}
       />
-      <Chevron
+      <ArrowButton
         direction="right"
         onClick={(e) => e.stopPropagation() || slider.next()}
       />
