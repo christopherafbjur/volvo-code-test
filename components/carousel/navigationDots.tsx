@@ -1,8 +1,15 @@
-export default function NavigationDots({ slider, currentSlide }) {
+import cn from "classnames";
+import { CarouselNavigationDotsProps } from "../../types/carousel";
+import styles from "./navigationDots.module.css";
+
+export default function NavigationDots({
+  slider,
+  currentSlide,
+}: CarouselNavigationDotsProps) {
   if (!slider) return null;
 
   return (
-    <div className="dots">
+    <div className={styles.dots}>
       {[...Array(slider.details().size).keys()].map((idx) => {
         return (
           <button
@@ -10,7 +17,9 @@ export default function NavigationDots({ slider, currentSlide }) {
             onClick={() => {
               slider.moveToSlideRelative(idx);
             }}
-            className={"dot" + (currentSlide === idx ? " active" : "")}
+            className={cn(styles.dot, {
+              [styles.active]: currentSlide === idx,
+            })}
           />
         );
       })}
