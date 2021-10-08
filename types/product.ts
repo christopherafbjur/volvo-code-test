@@ -5,3 +5,9 @@ export interface ProductProps {
     subtitle: string,
     imageUrl: string,
   }
+
+  
+export interface ProductLinkProps {
+    url: string,
+    text: string,
+  }
