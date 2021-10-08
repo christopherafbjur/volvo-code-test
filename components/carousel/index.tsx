@@ -1,79 +1,61 @@
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import { useEffect, useState } from "react";
-import { Block } from 'vcc-ui';
+import { Block } from "vcc-ui";
 import { getMinimumItemArray } from "../../lib/helpers";
-import Product from "../product";
+import { CarouselProps } from "../../types";
 import NavigationArrows from "./navigationArrows";
 import NavigationDots from "./navigationDots";
 import Slider from "./slider";
 
 const MINIMUM_SLIDES = 8;
+const SLIDER_CONFIG = {
+  loop: true,
+  initial: 0,
+  slidesPerView: 4,
+  breakpoints: {
+    "(max-width: 619px)": {
+      slidesPerView: 1,
+    },
+    "(min-width: 620px) and (max-width: 1000px)": {
+      slidesPerView: 2,
+    },
+    "(min-width: 1001px) and (max-width: 1170px)": {
+      slidesPerView: 3,
+    },
+  },
+};
 
-export default function Carousel({ products }) {
-  const [items, setItems] = useState(products);
+export default function Carousel(props: CarouselProps) {
+  const [items, setItems] = useState(props.items);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, slider] = useKeenSlider({
-    loop: true,
-    initial: 0,
-    slidesPerView: 4,
-    breakpoints: {
-      "(max-width: 619px)": {
-        slidesPerView: 1,
-      },
-      "(min-width: 620px) and (max-width: 1000px)": {
-        slidesPerView: 2,
-      },
-      "(min-width: 1001px) and (max-width: 1170px)": {
-        slidesPerView: 3,
-      },
-    },
+    ...SLIDER_CONFIG,
     slideChanged(s) {
       setCurrentSlide(s.details().relativeSlide);
     },
   });
 
   useEffect(() => {
-    setItems(getMinimumItemArray(products, MINIMUM_SLIDES));
-  }, [products]);
+    setItems(getMinimumItemArray(props.items, MINIMUM_SLIDES));
+  }, [props.items]);
+
   useEffect(() => {
     slider &&
       slider.refresh({
-        loop: true,
-        initial: 0,
-        slidesPerView: 4,
-        breakpoints: {
-          "(max-width: 619px)": {
-            slidesPerView: 1,
-          },
-          "(min-width: 620px) and (max-width: 1000px)": {
-            slidesPerView: 2,
-          },
-          "(min-width: 1001px) and (max-width: 1170px)": {
-            slidesPerView: 3,
-          },
-        },
+        ...SLIDER_CONFIG,
         slideChanged(s) {
           setCurrentSlide(s.details().relativeSlide);
         },
       });
-  }, [items]);
+  }, [items, slider]);
 
   return (
     <>
-      <div className="navigation-wrapper">
         <Slider
           ref={sliderRef}
           items={items}
-          renderItem={(item) => (
-            <Product
-              id={item.id}
-              type={item.bodyType}
-              title={item.modelName}
-              subtitle={item.modelType}
-              imageUrl={item.imageUrl}
-            />
-          )}
+          renderItem={props.renderItem}
         />
 
         <div
@@ -98,7 +80,6 @@ export default function Carousel({ products }) {
             </Block>
           </div>
         </div>
-      </div>
     </>
   );
 }
