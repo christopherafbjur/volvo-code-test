@@ -1,6 +1,7 @@
 import { Arrow, Block, Click } from "vcc-ui";
+import { ArrowButtonProps } from "../types";
 
-export default function Chevron(props) {
+export default function ArrowButton(props: ArrowButtonProps) {
   return (
     <Click
       extend={{ borderRadius: "50%", border: "1px solid gray", padding: "5px" }}
