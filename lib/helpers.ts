@@ -3,15 +3,14 @@ export function toUppercase(text: string) {
 }
 
 
-export function getMinimumItemArray(inputItems: any, minimumAmount: number) {
+export function getMinimumItemArray(inputItems: any[] = [], minimumAmount: number = 4) {
   //Utility function which helps resolve looping/layout issues with KeenSlider generating an array of inputItems with a minimum length
-  var items = [...inputItems];
+  let items = [...inputItems];
 
-  if (inputItems >= minimumAmount) return inputItems;
-  if (!inputItems.length) return inputItems;
+  if (!items.length) return items;
 
   while (items.length < minimumAmount) {
-    items = [...items, ...inputItems];
+    items = [...items, ...items];
   }
 
   return items;
